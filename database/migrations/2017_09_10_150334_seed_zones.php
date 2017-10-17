@@ -16,11 +16,11 @@ class SeedZones extends Migration
     {
         $zones_setup = [
             [
-                'dimension' => 4,
+                'dimension' => 16,
                 'zoom' => 4
             ],
             [
-                'dimension' => 6,
+                'dimension' => 64,
                 'zoom' => 7
             ]
         ];
@@ -52,7 +52,7 @@ class SeedZones extends Migration
         $min_long = -180;
 
         $lat_step = 180/$dimension;
-        $long_step = 360/$dimension;
+        $long_step = 360/($dimension*2);
 
         $from_lat = $min_lat;
 
@@ -60,7 +60,7 @@ class SeedZones extends Migration
             $to_lat = $from_lat + $lat_step;
             $from_long = $min_long;
 
-            for($j = 0; $j < $dimension; $j++) {
+            for($j = 0; $j < $dimension*2; $j++) {
                 $to_long = $from_long + $long_step;
                 $center_lat = ($from_lat + $to_lat) / 2;
                 $center_long = ($from_long + $to_long) / 2;

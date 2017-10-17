@@ -8,8 +8,6 @@ class Tracker extends Model
 {
     protected $table = 'tracker';
 
-    public $timestamps = false;
-
     protected $fillable = [
         'name',
         'lat_from',

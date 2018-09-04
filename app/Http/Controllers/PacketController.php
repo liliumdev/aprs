@@ -44,6 +44,8 @@ class PacketController extends Controller
 
         if($data['filter'] == 'callsign' && isset($data['callsign'])) {
             $positions->withCallname($data['callsign']);
+        } else {
+            $positions = $positions->whereRaw('`id` in (select max(`id`) from `packet` group by `from`)');
         }
 
         return response()->json($positions->get());
